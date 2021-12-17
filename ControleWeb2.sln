@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleWeb2", "ControleWeb2\ControleWeb2.csproj", "{78D626F1-3968-473F-A0F8-BC9EE39052B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{78D626F1-3968-473F-A0F8-BC9EE39052B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78D626F1-3968-473F-A0F8-BC9EE39052B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78D626F1-3968-473F-A0F8-BC9EE39052B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78D626F1-3968-473F-A0F8-BC9EE39052B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE5FF55B-CEE3-4107-88D3-7F2368B62B67}
+	EndGlobalSection
+EndGlobal

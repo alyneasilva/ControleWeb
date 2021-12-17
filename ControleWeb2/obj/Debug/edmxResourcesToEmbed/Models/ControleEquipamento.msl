@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ControleWebModelStoreContainer" CdmEntityContainer="ControleWebEntities">
+    <EntitySetMapping Name="Equipamentos">
+      <EntityTypeMapping TypeName="ControleWebModel.Equipamentos">
+        <MappingFragment StoreEntitySet="Equipamentos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Equipamento" ColumnName="Equipamento" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+          <ScalarProperty Name="DataCadastro" ColumnName="DataCadastro" />
+          <ScalarProperty Name="Local" ColumnName="Local" />
+          <ScalarProperty Name="Armario" ColumnName="Armario" />
+          <ScalarProperty Name="Prateleira" ColumnName="Prateleira" />
+          <ScalarProperty Name="SistOper" ColumnName="SistOper" />
+          <ScalarProperty Name="AplicativoInstalado" ColumnName="AplicativoInstalado" />
+          <ScalarProperty Name="SistemaAutomação" ColumnName="SistemaAutomação" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="PC" ColumnName="PC" />
+          <ScalarProperty Name="RC" ColumnName="RC" />
+          <ScalarProperty Name="ItemRC" ColumnName="ItemRC" />
+          <ScalarProperty Name="NF" ColumnName="NF" />
+          <ScalarProperty Name="DataGarantia" ColumnName="DataGarantia" />
+          <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transacoes">
+      <EntityTypeMapping TypeName="ControleWebModel.Transacoes">
+        <MappingFragment StoreEntitySet="Transacoes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Transacao" ColumnName="Transacao" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="Local" ColumnName="Local" />
+          <ScalarProperty Name="IdEquipamento" ColumnName="IdEquipamento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

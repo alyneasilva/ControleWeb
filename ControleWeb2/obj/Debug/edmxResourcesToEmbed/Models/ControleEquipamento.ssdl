@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ControleWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Equipamentos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Equipamento" Type="nvarchar" MaxLength="50" />
+    <Property Name="Modelo" Type="nvarchar" MaxLength="50" />
+    <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="DataCadastro" Type="date" />
+    <Property Name="Local" Type="nvarchar" MaxLength="50" />
+    <Property Name="Armario" Type="nvarchar" MaxLength="50" />
+    <Property Name="Prateleira" Type="int" />
+    <Property Name="SistOper" Type="nvarchar" MaxLength="50" />
+    <Property Name="AplicativoInstalado" Type="nvarchar" MaxLength="50" />
+    <Property Name="SistemaAutomação" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="PC" Type="nvarchar" MaxLength="50" />
+    <Property Name="RC" Type="nvarchar" MaxLength="50" />
+    <Property Name="ItemRC" Type="nvarchar" MaxLength="50" />
+    <Property Name="NF" Type="nvarchar" MaxLength="50" />
+    <Property Name="DataGarantia" Type="date" />
+    <Property Name="Observacao" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ControleWeb.dbo.Transacoes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Transacoes">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="IdEquipamento" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Transacao" Type="nvarchar" MaxLength="50" />
+    <Property Name="Usuario" Type="nvarchar" MaxLength="50" />
+    <Property Name="Data" Type="datetime" />
+    <Property Name="Local" Type="nvarchar" MaxLength="50" />
+    <Property Name="IdEquipamento" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Transacoes_Equipamentos">
+    <End Role="Equipamentos" Type="Self.Equipamentos" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Transacoes" Type="Self.Transacoes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipamentos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transacoes">
+        <PropertyRef Name="IdEquipamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ControleWebModelStoreContainer">
+    <EntitySet Name="Equipamentos" EntityType="Self.Equipamentos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Transacoes" EntityType="Self.Transacoes" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Transacoes].[Id] AS [Id], 
+    [Transacoes].[Transacao] AS [Transacao], 
+    [Transacoes].[Usuario] AS [Usuario], 
+    [Transacoes].[Data] AS [Data], 
+    [Transacoes].[Local] AS [Local], 
+    [Transacoes].[IdEquipamento] AS [IdEquipamento]
+    FROM [dbo].[Transacoes] AS [Transacoes]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Transacoes_Equipamentos" Association="Self.FK_Transacoes_Equipamentos">
+      <End Role="Equipamentos" EntitySet="Equipamentos" />
+      <End Role="Transacoes" EntitySet="Transacoes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

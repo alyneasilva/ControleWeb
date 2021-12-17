@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ControleWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Equipamentos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Equipamento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DataCadastro" Type="DateTime" Precision="0" />
+    <Property Name="Local" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Armario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Prateleira" Type="Int32" />
+    <Property Name="SistOper" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AplicativoInstalado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SistemaAutomação" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ItemRC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DataGarantia" Type="DateTime" Precision="0" />
+    <Property Name="Observacao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Transacoes" Relationship="Self.FK_Transacoes_Equipamentos" FromRole="Equipamentos" ToRole="Transacoes" />
+  </EntityType>
+  <EntityType Name="Transacoes">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="IdEquipamento" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Transacao" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Data" Type="DateTime" Precision="3" />
+    <Property Name="Local" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IdEquipamento" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Equipamentos" Relationship="Self.FK_Transacoes_Equipamentos" FromRole="Transacoes" ToRole="Equipamentos" />
+  </EntityType>
+  <Association Name="FK_Transacoes_Equipamentos">
+    <End Role="Equipamentos" Type="Self.Equipamentos" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Transacoes" Type="Self.Transacoes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipamentos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transacoes">
+        <PropertyRef Name="IdEquipamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ControleWebEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Equipamentos" EntityType="Self.Equipamentos" />
+    <EntitySet Name="Transacoes" EntityType="Self.Transacoes" />
+    <AssociationSet Name="FK_Transacoes_Equipamentos" Association="Self.FK_Transacoes_Equipamentos">
+      <End Role="Equipamentos" EntitySet="Equipamentos" />
+      <End Role="Transacoes" EntitySet="Transacoes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
