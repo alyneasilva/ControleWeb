@@ -58,3 +58,7 @@ C:\Users\alyne\Documents\Sobressalentes\ControleWeb2\ControleWeb2\obj\Debug\Cont
 C:\Users\alyne\Documents\Sobressalentes\ControleWeb2\ControleWeb2\obj\Debug\ControleWeb2.csproj.CopyComplete
 C:\Users\alyne\Documents\Sobressalentes\ControleWeb2\ControleWeb2\obj\Debug\ControleWeb2.dll
 C:\Users\alyne\Documents\Sobressalentes\ControleWeb2\ControleWeb2\obj\Debug\ControleWeb2.pdb
+C:\Users\alyne\Documents\Sobressalentes\ControleWeb2\ControleWeb2\bin\PagedList.dll
+C:\Users\alyne\Documents\Sobressalentes\ControleWeb2\ControleWeb2\bin\PagedList.Mvc.dll
+C:\Users\alyne\Documents\Sobressalentes\ControleWeb2\ControleWeb2\bin\PagedList.xml
+C:\Users\alyne\Documents\Sobressalentes\ControleWeb2\ControleWeb2\bin\PagedList.Mvc.xml

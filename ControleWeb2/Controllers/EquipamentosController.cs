@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ControleWeb2.Models;
+using PagedList;
 
 namespace ControleWeb2.Controllers
 {
@@ -16,9 +17,62 @@ namespace ControleWeb2.Controllers
         private ControleWebEntities db = new ControleWebEntities();
 
         // GET: Equipamentos
-        public async Task<ActionResult> Index()
+        /*public async Task<ActionResult> Index()
         {
             return View(await db.Equipamentos.ToListAsync());
+        }*/
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.EquipamentosSortParm = String.IsNullOrEmpty(sortOrder) ? "equipamentos_desc" : "";
+            ViewBag.SerialNumberSortParm = String.IsNullOrEmpty(sortOrder) ? "serialnumber_asc" : "serialnumber_desc";
+            ViewBag.SistemaAutomacaoSortParm = String.IsNullOrEmpty(sortOrder) ? "sistemaautomacao_asc" : "";
+            //ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var equipamentos = from s in db.Equipamentos
+                           select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                equipamentos = equipamentos.Where(s => s.Equipamento.Contains(searchString)
+                                                || s.Modelo.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "equipamentos_desc":
+                    equipamentos = equipamentos.OrderByDescending(s => s.Equipamento);
+                    break;
+                case "serialnumber_asc":
+                    equipamentos = equipamentos.OrderBy(s => s.SerialNumber);
+                    break;
+                case "serialnumber_desc":
+                    equipamentos = equipamentos.OrderByDescending(s => s.SerialNumber);
+                    break;
+                case "sistemaautomacao_asc":
+                    equipamentos = equipamentos.OrderBy(s => s.SistemaAutomação);
+                    break;
+                default:
+                    equipamentos = equipamentos.OrderBy(s => s.Equipamento);
+                    break;
+            }
+
+            int pageSize = 50;
+            int pageNumber = (page ?? 1);
+            return View(equipamentos.ToPagedList(pageNumber, pageSize));
+
+            //return View(equipamentos.ToList());
         }
 
         // GET: Equipamentos/Details/5

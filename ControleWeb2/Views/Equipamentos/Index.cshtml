@@ -1,129 +1,153 @@
-﻿@model IEnumerable<ControleWeb2.Models.Equipamentos>
-
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ControleWeb2.Models.Equipamentos>
+<!--IEnumerable<ControleWeb2.Models.Equipamentos> -->
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Equipamentos</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "Equipamentos", FormMethod.Get))
+{
+    <p>
+        Procurar por Equipamento: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Pesquisar" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Equipamento)
+            @Html.ActionLink("Equipamento", "Index", new { sortOrder = ViewBag.EquipamentosSortParm, currentFilter = ViewBag.CurrentFilter })
+            <!-- @Html.ActionLink("Equipamento", "Index", new { sortOrder = ViewBag.EquipamentosSortParm }) Ordenação-->
+
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Modelo)
+            Modelo
+
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SerialNumber)
+            @Html.ActionLink("SerialNumber", "Index", new { sortOrder = ViewBag.SerialNumberSortParm, currentFilter = ViewBag.CurrentFilter })
+            <!-- @Html.ActionLink("SerialNumber", "Index", new { sortOrder = ViewBag.SerialNumberSortParm }) Ordenação -->
+
         </th>
         <!--<th>
-            @Html.DisplayNameFor(model => model.DataCadastro)
+             Data Cadastro
         </th> -->
-        <th> 
-            @Html.DisplayNameFor(model => model.Local)
+        <th>
+            Local
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Armario)
+            Armario
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Prateleira)
+            Prateleira
         </th>
         <!--<th>
-            @Html.DisplayNameFor(model => model.SistOper)
+            Sistema Operacional
         </th>
-        <th> 
-            @Html.DisplayNameFor(model => model.AplicativoInstalado)
+        <th>
+            Aplicativo Instalado
         </th> -->
         <th>
-            @Html.DisplayNameFor(model => model.SistemaAutomação)
+            @Html.ActionLink("SistemaAutomacao", "Index", new { sortOrder = ViewBag.SistemaAutomacaoSortParm, currentFilter = ViewBag.CurrentFilter })
+            <!-- @Html.ActionLink("SistemaAutomacao", "Index", new { sortOrder = ViewBag.SistemaAutomacaoSortParm }) -->
+
         </th>
         <!--<th>
-            @Html.DisplayNameFor(model => model.Status)
+            Status
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PC)
+            PC
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RC)
+            RC
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ItemRC)
+            Item RC
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NF)
+            NF
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DataGarantia)
+            Data de Garantia
         </th> -->
         <th>
-            @Html.DisplayNameFor(model => model.Observacao)
+            Observação
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Equipamento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Modelo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SerialNumber)
-        </td>
-        <!--<td>
-            @Html.DisplayFor(modelItem => item.DataCadastro)
-        </td> -->
-        <td>
-            @Html.DisplayFor(modelItem => item.Local)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Armario)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Prateleira)
-        </td>
-        <!--<td>
-            @Html.DisplayFor(modelItem => item.SistOper)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AplicativoInstalado)
-        </td> -->
-        <td>
-            @Html.DisplayFor(modelItem => item.SistemaAutomação)
-        </td>
-        <!--<td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ItemRC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NF)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataGarantia)
-        </td> -->
-        <td>
-            @Html.DisplayFor(modelItem => item.Observacao)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Equipamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNumber)
+            </td>
+            <!--<td>
+                @Html.DisplayFor(modelItem => item.DataCadastro)
+            </td> -->
+            <td>
+                @Html.DisplayFor(modelItem => item.Local)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Armario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prateleira)
+            </td>
+            <!--<td>
+                @Html.DisplayFor(modelItem => item.SistOper)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AplicativoInstalado)
+            </td> -->
+            <td>
+                @Html.DisplayFor(modelItem => item.SistemaAutomação)
+            </td>
+            <!--<td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemRC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataGarantia)
+            </td> -->
+            <td>
+                @Html.DisplayFor(modelItem => item.Observacao)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
